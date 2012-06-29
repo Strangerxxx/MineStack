@@ -21,6 +21,7 @@ function getHeaders($file) {
 	return(!empty($headers['Name']))? $headers : false;
 }
 function getStacks() {
+$result = array();
 	if($handle = opendir(STACK_PATH.'/stacks')){
 		while (false !== ($entry = readdir($handle))) {
 			if($entry != "." && $entry != "..") {
