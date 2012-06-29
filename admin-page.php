@@ -20,6 +20,14 @@ function getHeaders($file) {
 	$headers = get_file_data($file, $default_headers);
 	return(!empty($headers['Name']))? $headers : false;
 }
+function includeStacks($stacks) {
+	if($stacks){
+		foreach($stacks as $stack){
+			if(!get_option($stack['Name'])) add_option($stack['Name']); //i cant do this anymore...
+			else return include($stack['path']);
+		}
+	}
+}
 function getStacks() {
 $result = array();
 	if($handle = opendir(STACK_PATH.'/stacks')){
@@ -35,11 +43,11 @@ $result = array();
 				} else {
 					$path = STACK_PATH.'/stacks/'.$entry;
 				}
-				$headers = getHeaders($path);
-				if($headers){
-					$headers[path] = $path;
-					array_push($result, $headers);
-				}
+				$stack = getHeaders($path);
+				if(!empty($stack['Name'])){
+					$stack[path] = $path;
+					array_push($result, $stack);
+				} else $result = false;
 			}
 		}
 	}
