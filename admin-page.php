@@ -29,17 +29,16 @@ $result = array();
 					$entry_handle = opendir(STACK_PATH.'/stacks/'.$entry);
 					while(false !== ($file = readdir($entry_handle))){
 						if($file != "." && $file != "..") {
-							$headers = getHeaders(STACK_PATH.'stacks/'.$entry.'/'.$file);
-							if($headers){
-								array_push($result, $headers);
-							}
+							$path = STACK_PATH.'stacks/'.$entry.'/'.$file;
 						}
 					}
 				} else {
-					$headers = getHeaders(STACK_PATH.'/stacks/'.$entry);
-					if($headers){
-						array_push($result, $headers);
-					}
+					$path = STACK_PATH.'/stacks/'.$entry;
+				}
+				$headers = getHeaders($path);
+				if($headers){
+					$headers[path] = $path;
+					array_push($result, $headers);
 				}
 			}
 		}
