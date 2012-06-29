@@ -22,7 +22,7 @@ function getHeaders($file) {
 }
 function getStacks() {
 	if($handle = opendir(STACK_PATH.'/stacks')){
-	    while (false !== ($entry = readdir($handle))) {
+		while (false !== ($entry = readdir($handle))) {
 			if($entry != "." && $entry != "..") {
 				if(is_dir(STACK_PATH.'/stacks/'.$entry)){
 					$entry_handle = opendir(STACK_PATH.'/stacks/'.$entry);
@@ -42,6 +42,7 @@ function getStacks() {
 				}
 			}
 		}
+	}
 	return $result;
 }
 function display_stacks() {
