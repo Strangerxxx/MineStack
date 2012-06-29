@@ -9,6 +9,7 @@
 */
 define('STACK_URL', plugin_dir_url(__FILE__));
 define('STACK_PATH', plugin_dir_path(__FILE__));
+include('functions.php');
 include('admin-page.php');
 function css_init() {
     wp_register_style('style.css', STACK_PATH. 'style.css');
