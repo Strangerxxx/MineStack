@@ -6,6 +6,7 @@
 	@subpackage: MineStack
 	
 */
+
 function display_stacks() {
 	$stacks = getStacks();
 ?>
