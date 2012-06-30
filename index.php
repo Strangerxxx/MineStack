@@ -15,8 +15,9 @@ function css_init() {
     wp_register_style('style.css', PLUGIN_PATH. 'style.css');
     wp_enqueue_style('style.css');
 }
-add_action('admin_init', 'css_init');
 function create_menu() {
 	add_menu_page('MineStack', 'MineStack', 'administrator','minestack', 'display_stacks', PLUGIN_URL.'/img/favicon.png');
 }
+add_action('init', 'includeStacks');
+add_action('admin_init', 'css_init');
 add_action('admin_menu', 'create_menu');
