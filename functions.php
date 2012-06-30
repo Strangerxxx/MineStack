@@ -17,7 +17,8 @@ function getHeaders($file) {
 		'License' => 'License'
 	);
 	$headers = get_file_data($file, $default_headers);
-	return(!empty($headers['Name']))? $headers : false;
+	//return(!empty($headers['Name']))? $headers : false;
+	return $headers;
 }
 function includeStacks() {
 	$stacks = getStacks();
@@ -50,6 +51,7 @@ $result = array();
 					$path = PLUGIN_PATH.'/stacks/'.$entry;
 				}
 				$stack = getHeaders($path);
+				echo $path;
 				if(!empty($stack['Name'])){
 					$stack[path] = $path;
 					array_push($result, $stack);

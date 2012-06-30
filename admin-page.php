@@ -9,6 +9,8 @@
 
 function display_stacks() {
 	$stacks = getStacks();
+	print_r($stacks);
+	print_r(getHeaders('/home/stranger/demo/wp-content/plugins/MineStack/stacks/launcher/index.php'))
 ?>
 		<div id="wrap" class="wrap" style="width: 50%">
 			<table width="50px" cellspacing="0" class="wp-list-table widefat fixed posts">
