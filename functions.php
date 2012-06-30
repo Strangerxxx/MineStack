@@ -31,20 +31,23 @@ function includeStacks($stacks) {
 		}
 	}
 }
+function stack_dir_path($file){
+	return trailingslashit(dirname($file));
+}
 function getStacks() {
 $result = array();
-	if($handle = opendir(STACK_PATH.'/stacks')){
+	if($handle = opendir(PLUGIN_PATH.'/stacks')){
 		while (false !== ($entry = readdir($handle))) {
 			if($entry != "." && $entry != "..") {
-				if(is_dir(STACK_PATH.'/stacks/'.$entry)){
-					$entry_handle = opendir(STACK_PATH.'/stacks/'.$entry);
+				if(is_dir(PLUGIN_PATH.'/stacks/'.$entry)){
+					$entry_handle = opendir(PLUGIN_PATH.'/stacks/'.$entry);
 					while(false !== ($file = readdir($entry_handle))){
 						if($file != "." && $file != "..") {
-							$path = STACK_PATH.'stacks/'.$entry.'/'.$file;
+							$path = PLUGIN_PATH.'stacks/'.$entry.'/'.$file;
 						}
 					}
 				} else {
-					$path = STACK_PATH.'/stacks/'.$entry;
+					$path = PLUGIN_PATH.'/stacks/'.$entry;
 				}
 				$stack = getHeaders($path);
 				if(!empty($stack['Name'])){
