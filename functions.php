@@ -19,17 +19,17 @@ function getHeaders($file) {
 	$headers = get_file_data($file, $default_headers);
 	return(!empty($headers['Name']))? $headers : false;
 }
-function includeStacks($stacks) {
+function includeStacks() {
+	$stacks = getStacks();
 	if($stacks){
 		foreach($stacks as $stack){
-			if(get_option($stack['Name'], 0) != 0){
-				if(!get_option($stack['Name'])){
-					echo include($stack['path']);
-				}
-			}
-			else return add_option($stack['Name']);
+			if(!isRegisterStack($stack['Name'])) add_option($stack['Name'], false);
+			if(get_option($stack['Name'])) include($stack['path']);
 		}
 	}
+}
+function isRegisterStack($name){
+	return (get_option($name, 0) != 0)? true : false;
 }
 function stack_dir_path($file){
 	return trailingslashit(dirname($file));
